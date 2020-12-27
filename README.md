@@ -11,7 +11,6 @@
     * [Ping Dashboard](#ping-dashboard)
     * [System Monitoring Dashboard](#system-monitoring-dashboard)
 * [Test Alerts](#test-alerts)
-* [Utility Scripts](#utility-scripts)
 * [Security Considerations](#security-considerations)
    * [Production Security](#production-security)
 * [Troubleshooting](#troubleshooting)
@@ -38,9 +37,9 @@ If you don't already have a [Digital Ocean](https://www.digitalocean.com/) accou
 For this demo the smallest standard droplet will do. If you don't know how to create a droplet or how to SSH into it you can follow my  [demo on Medium](https://medium.com/@armiiller/create-a-docker-droplet-on-digital-ocean-f19db2b4be53).
 
 # Installation & Configuration
-For a one click install experience run the following command:
-```curl
-curl https://raw.githubusercontent.com/PagerTree/prometheus-grafana-alertmanager-example/master/install.sh -H 'Cache-Control: no-cache' | sudo sh
+Run docker compose with:
+```bash
+$ docker-compose up -d
 ```
 
 At this point you'll have automagically deployed the entire Grafana and Prometheus stack. You can now access the Grafana dashboard at `http://<Host IP Address>:3000` *Username: `admin`, Password: `9uT46ZKE`*. *Note: before the dashboards will work you need to follow the [Datasource Configuration section](#datasource-configuration).*
@@ -116,21 +115,6 @@ Shows HTTP uptime from websites monitored. See [Ping Configuration](ping-configu
 Shows stats like RAM, CPU, Storage of the current node.
 
 <img src="images/dashboard-system-monitoring.png" alt="System Monitoring Dashboard">
-
-## Utility Scripts
-
-We've provided some utility scripts in the `util` folder.
-
-| Script | Args | Description | Example |
-| --- |:---:| --- | --- |
-| docker-log.sh | service | List the logs of a docker service by name | ./util/docker-log.sh grafana |
-| docker-nuke.sh | service | Removes docker services and volumes created by this project | ./util/docker-nuke.sh |
-| docker-ssh.sh | service | SSH into a service container | ./util/docker-ssh.sh grafana |
-| high-load.sh | | Simulate high CPU load on the current computer | ./util/high-load.sh |
-| restart.sh | | Restart all services | ./util/restart.sh |
-| start.sh | | Start all services | ./util/start.sh |
-| status.sh | | Print status all services | ./util/status.sh |
-| stop.sh | | Stop all services | ./util/stop.sh |
 
 ## Alerting
 
